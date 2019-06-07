@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'kabala'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.executables << 'kabala_init'
   s.date        = '2019-05-28'
   s.summary     = "Kabala ^^"
