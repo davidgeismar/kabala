@@ -1,0 +1,27 @@
+- thread_count: 1
+  invocations_per_thread: 100
+  table_name: syndicate
+  klass: SyndicateEventsService
+  methods:
+    - name: 'new'
+      args:
+        - data:
+            adapter: json
+            location: <%= Rails.root.join("spec", "fixtures", "kafka", "syndicate_create_data.json") %>
+            overrides:
+              tote_id: 111
+              reference_code: abcd123
+            overrides_config:
+              reference_code:
+                uniq: true
+              tote_id:
+                uniq: true
+                strategy: incremental
+    - name: create
+  scripts:
+    - run: before
+      order: 0
+      location: <%= Rails.root.join('tests', 'scripts', 'test_pre_script.rb').to_s %>
+    - run: after
+      order: 0
+      location: <%= Rails.root.join('tests', 'scripts', 'test_post_script.rb').to_s %>
